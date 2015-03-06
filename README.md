@@ -37,6 +37,6 @@ Demo and article [Codrops link(soon)](#)
 ### Options
 You may extend the time that a frame is visible throught the data-duration attribute.
 ```html
-	<div class="space-frame" data-duration="1.4">
+<div class="space-frame" data-duration="1.4">
 ```
 
