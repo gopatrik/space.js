@@ -74,7 +74,7 @@
 
 	// 
 
-	var Depth = function () {
+	var Space = function () {
 		var $window = $(window);
 		var windowHeight = $window.height();
 		var dimensions = {height: $window.height(), width:$window.width()};
@@ -210,7 +210,7 @@
 
 	initFrameCSS();
 
-	Depth().init();
+	Space().init();
 
 }).call(this);
 
