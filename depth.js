@@ -1,0 +1,204 @@
+//
+//	Uses Douglas Crockfords Object creation style
+//	In preparation for ES6.
+//
+
+(function () {
+
+	// Handles scroll events and attaches them to methods.
+	var ScrollController = function () {
+		var method;
+		var interval;
+		var repeatIntervalId;
+		var $window = $(window);
+		var lastScrollTop = 0;
+		var lastScrollTime;
+		var delayCount = 0;
+
+		// ----- public methods ------
+		// repeat function *func* every *interv*:nth millisecond
+		var repeatOnScroll = function (func, interv) {
+			method = func;
+			interval = interv;
+
+			window.onscroll = function () {
+				if(!repeatIntervalId){
+					startRepeat();
+				};
+			};
+		};
+
+		// ----- private methods ------
+		
+		// Tick forwards, check for scroll stop and run *method*.
+		var update = function(){
+			if(repeatIntervalId){
+				// detect when to stop repeating
+				var tmpScrollTop = $window.scrollTop();
+				
+
+				// delta stopped
+				if(tmpScrollTop == lastScrollTop){
+					// wait half a second extra to account for scroll easing
+					if(++delayCount >= 30){
+						delayCount = 0;
+						stopRepeat();
+					}
+				};
+
+				lastScrollTop = tmpScrollTop;
+
+				// run the method
+				method();
+			};
+		};
+
+		var startRepeat = function(){
+			repeatIntervalId = window.setInterval(update, interval);
+		};
+
+		var stopRepeat = function(){
+			window.clearInterval(repeatIntervalId);
+			repeatIntervalId = undefined;
+		};
+
+
+		return Object.freeze({
+			repeatOnScroll:repeatOnScroll,
+			getScrollTop: function () {
+				return lastScrollTop;
+			}
+		});
+	};
+
+
+	// 
+
+	var Depth = function () {
+		var $window = $(window);
+		var windowHeight = $window.height();
+		var dimensions = {height: $window.height(), width:$window.width()};
+		var scrollControl = ScrollController();
+		var frames;
+		var currentFrame = 0;
+
+		// Todo: make these modular from the <element>, e.g:
+		// e.g. <section class="frame depth-scale depth-opacity"></section>
+		var transition = [{
+			'opacity': {
+				from: 1,
+				to: 0
+			},
+			'scale': {
+				from:1,
+				to:1.5
+			}
+		}];
+
+
+		// ----- public methods ------
+		var init = function () {
+
+			// compensate speed scrolling on touch screens
+			var touchScreenCompensation = (isMobile() ? 0.3 : 1);
+
+			var simulatedBodyHeight = 0;
+
+			// Set up frames
+			frames = $('.frame').map(function(index, frame){
+
+				// Duration for current frame, default is one.
+				// Other is read from html-element attribute data-duration
+				var duration = (frame.dataset.duration || 1) * touchScreenCompensation;
+
+				// simulated document height, to get a scrollbar and height
+				var simulatedHeight = duration * windowHeight;
+				var distanceTo = simulatedBodyHeight;
+				simulatedBodyHeight+= simulatedHeight;
+
+				// give each frame an id
+				var frameId = "frame-"+index;
+				frame.id = frameId;
+				return {selector:"#"+frameId, duration:simulatedHeight, distanceTo:distanceTo};
+			});
+
+			// set fake body height
+			$('body').height(simulatedBodyHeight);
+
+
+			// show the first frame
+			$(frames[currentFrame].selector).show();
+
+			// initiate scroll controller with animate method
+			scrollControl.repeatOnScroll(animate, 1000/60);
+		};
+
+
+		// ----- private methods ------
+
+		var animate = function () {
+			window.requestAnimationFrame(function(){
+				setCurrentFrame();
+				animateFrame();
+			});
+		};
+
+		// compare scrolled distance with frames and select the correct one
+		var setCurrentFrame = function(){
+			var top = scrollControl.getScrollTop();
+			var trigger = frames[currentFrame].distanceTo;
+
+			// check if we are not in the interval of the current frame
+			if(top < trigger){ // prev frame
+				$('.frame').hide();
+				currentFrame--;
+				if (currentFrame < 0){currentFrame = 0};
+				$(frames[currentFrame].selector).show();
+			}else if(top > (trigger + frames[currentFrame].duration)){ // next frame
+				$('.frame').hide();
+				currentFrame++;
+				$(frames[currentFrame].selector).show();
+			};
+		};
+
+
+		// Update css values of the current frame to their delta-value in the scroll progress
+		var animateFrame = function () {
+			var scrollInElement = (scrollControl.getScrollTop() - frames[currentFrame].distanceTo);
+
+			var opacity = deltaValue(transition[0], scrollInElement, "opacity");
+			var scale = deltaValue(transition[0], scrollInElement, "scale");
+
+			$(frames[currentFrame].selector).css({
+			  'transform': 'scale('+ scale +')',
+			  'opacity' : opacity
+			});
+		};
+
+		var deltaValue = function(animation, delta, property) {
+		  var value = animation[property];
+		  var frameDuration = frames[currentFrame].duration;
+
+		  // compute delta value and round it to four digits to save performance.
+		  return +linearEase(delta, value.from, (value.to-value.from), frameDuration).toFixed(4);
+		};
+
+		var linearEase = function(t, b, c, d) {
+		  return b+c*(t/d);
+		};
+
+		var isMobile = function () {
+			return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+		};
+
+		// export immutable public properties
+		return Object.freeze({
+			init:init
+		});
+	};
+
+	Depth().init();
+
+}).call(this);
+
+
