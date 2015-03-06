@@ -81,6 +81,7 @@
 		var scrollControl = ScrollController();
 		var frames;
 		var currentFrame = 0;
+		var frameSelector = ".space-frame";
 
 		// Todo: make these modular from the <element>, e.g:
 		// e.g. <section class="frame depth-scale depth-opacity"></section>
@@ -105,7 +106,7 @@
 			var simulatedBodyHeight = 0;
 
 			// Set up frames
-			frames = $('.frame').map(function(index, frame){
+			frames = $('.space-frame').map(function(index, frame){
 
 				// Duration for current frame, default is one.
 				// Other is read from html-element attribute data-duration
@@ -150,12 +151,12 @@
 
 			// check if we are not in the interval of the current frame
 			if(top < trigger){ // prev frame
-				$('.frame').hide();
+				$('.space-frame').hide();
 				currentFrame--;
 				if (currentFrame < 0){currentFrame = 0};
 				$(frames[currentFrame].selector).show();
 			}else if(top > (trigger + frames[currentFrame].duration)){ // next frame
-				$('.frame').hide();
+				$('.space-frame').hide();
 				currentFrame++;
 				$(frames[currentFrame].selector).show();
 			};
@@ -196,6 +197,18 @@
 			init:init
 		});
 	};
+
+	var initFrameCSS = function () {
+		var frameStyle = ".space-frame {display: none;position: fixed;width: 100vw;height: 100vh;} ";
+		var innerFrameStyle = ".space-frame .space-inner-frame {position: absolute;transform-style: preserve-3d;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);-moz-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);-o-transform: translate(-50%, -50%);transform: translate(-50%, -50%);}"
+
+		var style = document.createElement('style');
+		style.type = 'text/css';
+		style.innerHTML = frameStyle + innerFrameStyle;
+		document.getElementsByTagName('head')[0].appendChild(style);
+	}
+
+	initFrameCSS();
 
 	Depth().init();
 
