@@ -97,9 +97,32 @@
 		}];
 
 
+		var transitions = {
+			scaleIn: {'scale':{from:0, to:1}},
+			fadeIn: {'opacity':{from:0, to:1}},
+			scaleOut: {'scale':{from:1, to:1.5}},
+			fadeOut: {'opacity':{from:1, to:0}},
+			rotateQuarterRight: {'rotate':{from:0, to:45}},
+			slideOutRight: {
+				'translate3d':{
+					from:{x:0, y:0},
+					to: {x:500, y:100}
+				}
+			}
+		};
+
+		var defaultTransition = {
+			all: [transitions.scaleOut, transitions.fadeOut, transitions.slideOutRight, transitions.rotateQuarterRight],
+			enter: [],
+			exit:[]
+		};
+			// enter: {
+			// 	// transition.
+			// },
+			// exit: {}
+
 		// ----- public methods ------
 		var init = function () {
-
 			// compensate speed scrolling on touch screens
 			var touchScreenCompensation = (isMobile() ? 0.3 : 1);
 
@@ -134,7 +157,6 @@
 			scrollControl.repeatOnScroll(animate, 1000/60);
 		};
 
-
 		// ----- private methods ------
 
 		var animate = function () {
@@ -162,26 +184,57 @@
 			};
 		};
 
+		function propValueToCssFormat (prop, val) {
+			switch (prop){
+				case "scale":
+					return 'scale('+val+')';
+				case "rotate":
+					return 'rotate('+val+'deg)';
+				case "translate3d":
+					return 'translate3d(' + 
+						(val.x ? val.x+'px' : 0)+','+
+						(val.y ? val.y+'px' : 0)+','+
+						(val.z ? val.z+'px' : 0)+')';
+				default:
+					return val;
+			};
+		}
 
 		// Update css values of the current frame to their delta-value in the scroll progress
 		var animateFrame = function () {
 			var scrollInElement = (scrollControl.getScrollTop() - frames[currentFrame].distanceTo);
 
-			var opacity = deltaValue(transition[0], scrollInElement, "opacity");
-			var scale = deltaValue(transition[0], scrollInElement, "scale");
-
-			$(frames[currentFrame].selector).css({
-			  'transform': 'scale('+ scale +')',
-			  'opacity' : opacity
+			var props = {'transform':''};
+			defaultTransition.all.forEach(function (trans) {
+				for(var property in trans){
+					if (property == 'scale' || property == 'translate3d' || property == 'rotate'){
+						props['transform'] += propValueToCssFormat(property, deltaValue(trans, scrollInElement, property));
+					}else{
+						props[property] = propValueToCssFormat(property, deltaValue(trans, scrollInElement, property));
+					};
+				};
 			});
+
+			$(frames[currentFrame].selector).css(props);
 		};
 
 		var deltaValue = function(animation, delta, property) {
 		  var value = animation[property];
+
 		  var frameDuration = frames[currentFrame].duration;
 
-		  // compute delta value and round it to four digits to save performance.
-		  return +linearEase(delta, value.from, (value.to-value.from), frameDuration).toFixed(4);
+		  var frameProgress = delta/frameDuration; // decimal percent
+
+		  if(property == 'translate3d'){
+		  		var trans = {};
+		  		for(axis in value.from){
+		  			trans[axis] = +linearEase(delta, value.from[axis], (value.to[axis]-value.from[axis]), frameDuration).toFixed(4);
+		  		};
+		  		return trans;
+		  }else{
+			  // compute delta value and round it to four digits to save performance.
+			  return +linearEase(delta, value.from, (value.to-value.from), frameDuration).toFixed(4);
+		  }
 		};
 
 		var linearEase = function(t, b, c, d) {
