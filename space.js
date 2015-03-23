@@ -89,11 +89,29 @@
 			fadeIn: {'opacity':{from:0, to:1}},
 			scaleOut: {'scale':{from:1, to:1.5}},
 			fadeOut: {'opacity':{from:1, to:0}},
-			rotateQuarterRight: {'rotate':{from:0, to:45}},
+			rotateQuarterRight: {'rotate':{from:0, to:90}},
+			slideOutDown: {
+				'translate3d':{
+					from:{y:0},
+					to: {y:700}
+				}
+			},
+			slideOutLeft: {
+				'translate3d':{
+					from:{x:0},
+					to: {x:-700}
+				}
+			},
 			slideOutRight: {
 				'translate3d':{
 					from:{x:0},
 					to: {x:700}
+				}
+			},
+			slideOutUp: {
+				'translate3d':{
+					from:{y:0},
+					to: {y:-700}
 				}
 			},
 			slideBottomRight: {
