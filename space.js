@@ -71,9 +71,7 @@
 		});
 	};
 
-
-	// 
-
+	// animation controller
 	var Space = function () {
 		var $window = $(window);
 		var windowHeight = $window.height();
@@ -85,17 +83,6 @@
 
 		// Todo: make these modular from the <element>, e.g:
 		// e.g. <section class="frame depth-scale depth-opacity"></section>
-		var transition = [{
-			'opacity': {
-				from: 1,
-				to: 0
-			},
-			'scale': {
-				from:1,
-				to:1.5
-			}
-		}];
-
 
 		var transitions = {
 			scaleIn: {'scale':{from:0, to:1}},
@@ -105,21 +92,23 @@
 			rotateQuarterRight: {'rotate':{from:0, to:45}},
 			slideOutRight: {
 				'translate3d':{
+					from:{x:0},
+					to: {x:700}
+				}
+			},
+			slideBottomRight: {
+				'translate3d':{
 					from:{x:0, y:0},
-					to: {x:500, y:100}
+					to: {x:500, y:500}
 				}
 			}
 		};
 
 		var defaultTransition = {
-			all: [transitions.scaleOut, transitions.fadeOut, transitions.slideOutRight, transitions.rotateQuarterRight],
+			all: [transitions.scaleOut, transitions.fadeOut],
 			enter: [],
 			exit:[]
 		};
-			// enter: {
-			// 	// transition.
-			// },
-			// exit: {}
 
 		// ----- public methods ------
 		var init = function () {
@@ -140,9 +129,22 @@
 				var distanceTo = simulatedBodyHeight;
 				simulatedBodyHeight+= simulatedHeight;
 
+
 				// give each frame an id
 				var frameId = "frame-"+index;
 				frame.id = frameId;
+
+				// look for a custom transition to override the default one
+				var customTransition = frame.dataset.transition;
+				if(customTransition){
+					customTransition = customTransition.split(/\s+/);
+					customTransition = customTransition.map(function(t){
+						return transitions[t];
+					});
+					customTransition = {all:customTransition};
+					return {selector:"#"+frameId, duration:simulatedHeight, distanceTo:distanceTo, transition:customTransition};
+				}
+
 				return {selector:"#"+frameId, duration:simulatedHeight, distanceTo:distanceTo};
 			});
 
@@ -205,7 +207,11 @@
 			var scrollInElement = (scrollControl.getScrollTop() - frames[currentFrame].distanceTo);
 
 			var props = {'transform':''};
-			defaultTransition.all.forEach(function (trans) {
+
+			// custom or default transition
+			var frameTransition = frames[currentFrame].transition || defaultTransition;
+
+			frameTransition.all.forEach(function (trans) {
 				for(var property in trans){
 					if (property == 'scale' || property == 'translate3d' || property == 'rotate'){
 						props['transform'] += propValueToCssFormat(property, deltaValue(trans, scrollInElement, property));
