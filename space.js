@@ -90,6 +90,12 @@
 			scaleOut: {'scale':{from:1, to:1.5}},
 			fadeOut: {'opacity':{from:1, to:0}},
 			rotateQuarterRight: {'rotate':{from:0, to:90}},
+			slideInBottom: {
+				'translate3d':{
+					from:{y:700},
+					to: {y:0}
+				}
+			},
 			slideOutDown: {
 				'translate3d':{
 					from:{y:0},
@@ -124,7 +130,7 @@
 
 		var defaultTransition = {
 			all: [transitions.scaleOut, transitions.fadeOut],
-			enter: [],
+			enter: [transitions.slideInBottom],
 			exit:[]
 		};
 
@@ -154,14 +160,24 @@
 
 				// look for a custom transition to override the default one
 				var customTransition = frame.dataset.transition;
-				if(customTransition){
-					customTransition = customTransition.split(/\s+/);
-					customTransition = customTransition.map(function(t){
-						return transitions[t];
-					});
-					customTransition = {all:customTransition};
-					return {selector:"#"+frameId, duration:simulatedHeight, distanceTo:distanceTo, transition:customTransition};
-				}
+				var customEnter = frame.dataset.enter;
+				var customExit = frame.dataset.exit;
+
+				if(customTransition || customEnter || customExit){
+					var newTransition = {
+						all:[],
+						enter:[],
+						exit:[]
+					};
+
+					var toTransition = function(arr){return arr.split(/\s+/).map(function(t){return transitions[t];})};
+
+					newTransition.all = customTransition ? toTransition(customTransition) : [];
+					newTransition.enter = customEnter ? toTransition(customEnter) : [];
+					newTransition.exit = customExit ? toTransition(customExit) : [];
+
+					return {selector:"#"+frameId, duration:simulatedHeight, distanceTo:distanceTo, transition:newTransition};
+				};
 
 				return {selector:"#"+frameId, duration:simulatedHeight, distanceTo:distanceTo};
 			});
@@ -238,6 +254,18 @@
 					};
 				};
 			});
+
+			if(scrollInElement <= (frames[currentFrame].duration / 2)){
+				frameTransition.enter.forEach(function (trans) {
+					for(var property in trans){
+						if (property == 'scale' || property == 'translate3d' || property == 'rotate'){
+							props['transform'] += propValueToCssFormat(property, deltaValue(trans, scrollInElement*2, property));
+						}else{
+							props[property] = propValueToCssFormat(property, deltaValue(trans, scrollInElement*2, property));
+						};
+					};
+				});
+			};
 
 			$(frames[currentFrame].selector).css(props);
 		};
