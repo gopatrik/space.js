@@ -164,11 +164,7 @@
 				var customExit = frame.dataset.exit;
 
 				if(customTransition || customEnter || customExit){
-					var newTransition = {
-						all:[],
-						enter:[],
-						exit:[]
-					};
+					var newTransition = {all:[],enter:[],exit:[]};
 
 					var toTransition = function(arr){return arr.split(/\s+/).map(function(t){return transitions[t];})};
 
