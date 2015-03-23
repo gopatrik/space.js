@@ -130,8 +130,8 @@
 
 		var defaultTransition = {
 			all: [transitions.scaleOut, transitions.fadeOut],
-			enter: [transitions.slideInBottom],
-			exit:[]
+			enter: [],
+			exit:[transitions.slideOutDown]
 		};
 
 		// ----- public methods ------
@@ -261,7 +261,17 @@
 						};
 					};
 				});
-			};
+			}else{
+				frameTransition.exit.forEach(function (trans) {
+					for(var property in trans){
+						if (property == 'scale' || property == 'translate3d' || property == 'rotate'){
+							props['transform'] += propValueToCssFormat(property, deltaValue(trans, (scrollInElement - (frames[currentFrame].duration / 2))*2, property));
+						}else{
+							props[property] = propValueToCssFormat(property, deltaValue(trans, (scrollInElement - (frames[currentFrame].duration / 2))*2, property));
+						};
+					};
+				});
+			}
 
 			$(frames[currentFrame].selector).css(props);
 		};
