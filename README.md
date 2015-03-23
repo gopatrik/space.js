@@ -39,4 +39,28 @@ You may extend the time that a frame is visible throught the data-duration attri
 ```html
 <div class="space-frame" data-duration="1.4">
 ```
+Override the default transition
+
+```html
+<div class="space-frame" data-transition="slideInBottom fadeOut">
+```
+Specify specifik entry and exit transitions. (Also overrides the default transition.)
+
+```html
+<div class="space-frame" data-enter="slideInBottom" data-exit="slideOutDown fadeOut">
+```
+
+
+### Supported transitions
+- scaleIn
+- fadeIn
+- scaleOut
+- fadeOut
+- rotateQuarterRight
+- slideInBottom
+- slideOutDown
+- slideOutLeft
+- slideOutRight
+- slideOutUp
+- slideBottomRight
 
