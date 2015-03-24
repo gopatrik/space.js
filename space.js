@@ -114,10 +114,28 @@
 					to: {x:700}
 				}
 			},
+			slideInRight: {
+				'translate3d':{
+					from:{x:700},
+					to: {x:0}
+				}
+			},
 			slideOutUp: {
 				'translate3d':{
 					from:{y:0},
 					to: {y:-700}
+				}
+			},
+			slideInTop: {
+				'translate3d':{
+					from:{y:-700},
+					to: {y:0}
+				}
+			},
+			slideInLeft: {
+				'translate3d':{
+					from:{x:-700},
+					to: {x:0}
 				}
 			},
 			slideBottomRight: {
@@ -125,13 +143,16 @@
 					from:{x:0, y:0},
 					to: {x:500, y:500}
 				}
+			},
+			rotate360: {
+				'rotate':{from:0, to:360}
 			}
 		};
 
 		var defaultTransition = {
 			all: [transitions.scaleOut, transitions.fadeOut],
 			enter: [],
-			exit:[transitions.slideOutDown]
+			exit:[]
 		};
 
 		// ----- public methods ------
