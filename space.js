@@ -90,6 +90,10 @@
 			scaleOut: {'scale':{from:1, to:1.5}},
 			fadeOut: {'opacity':{from:1, to:0}},
 			rotateQuarterRight: {'rotate':{from:0, to:90}},
+			rotateInQuarterClockwise: {'rotate':{from:-90, to:0}},
+			zoomOut:{
+				'scale': {from: 1, to: 0}
+			},
 			slideInBottom: {
 				'translate3d':{
 					from:{y:700},
