@@ -1,0 +1,43 @@
+doctype html
+html
+	head
+		meta(charset="utf-8")
+		title Space.js
+		script(src="jquery-2.0.2.min.js")
+		link(rel="stylesheet", type="text/css", href="css/main.css")
+
+
+
+body
+
+	//- Mixins
+
+	mixin frame(bg)
+		.space-frame&attributes(attributes)
+			if bg
+				+bg(bg)
+			section.space-inner-frame
+				block
+
+	mixin bg(src)
+		.background(style="background-image:url(#{src});")
+
+	+frame
+		section.center
+			img.inline(src="img/spacejs.png", width="300px" alt="")
+		p.center.nm A javascript library for anything but normal scrolling.
+		p.center
+			a(href="/") Documentation
+			|  | 
+			a(href="https://github.com/gopatrik/space.js") GitHub Repository
+		p.center.small.mt-large Scroll for a quick demo.
+
+
+	+frame
+		p
+			a(href="https://github.com/gopatrik/space.js") Demos on Codrops
+			|  | 
+			a(href="https://github.com/gopatrik/space.js") Read Codrops Article
+
+	script(src="space.js")
+

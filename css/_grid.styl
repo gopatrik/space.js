@@ -1,0 +1,35 @@
+
+section, article, div, aside
+	cf()
+
+.span-half
+	span(1/2)
+
+.half
+	col(1/2)
+
+.third
+	col(1/3)
+	
+.two-third
+	col(2/3)
+
+.quarter
+	col(1/4)
+
+.push-half
+	col(1/2, offset:1/2)
+
+.whole
+	// col(1)
+	center(mainWidth)
+
+.medium-width
+	center(800px)
+
+.center-small
+	center(500px)
+
+.collapse
+	+below(800px)
+		col(1)
