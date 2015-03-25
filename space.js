@@ -150,6 +150,12 @@
 			},
 			rotate360: {
 				'rotate':{from:0, to:360}
+			},
+			rotate3dOut: {
+				'rotate3d':{
+					from:{x:0, y:0, z:0, angle:0},
+					to: {x:1, y:-1,z:0, angle:90}
+				}
 			}
 		};
 
@@ -252,6 +258,12 @@
 						(val.x ? val.x+'px' : 0)+','+
 						(val.y ? val.y+'px' : 0)+','+
 						(val.z ? val.z+'px' : 0)+')';
+				case "rotate3d":
+					return 'rotate3d(' + 
+						(val.x ? val.x : 0)+','+
+						(val.y ? val.y : 0)+','+
+						(val.z ? val.z : 0)+','+
+						(val.angle ? val.angle+'deg' : 0)+')';
 				default:
 					return val;
 			};
@@ -268,7 +280,7 @@
 
 			frameTransition.all.forEach(function (trans) {
 				for(var property in trans){
-					if (property == 'scale' || property == 'translate3d' || property == 'rotate'){
+					if (property == 'scale' || property == 'translate3d' || property == 'rotate' || property == 'rotate3d'){
 						props['transform'] += propValueToCssFormat(property, deltaValue(trans, scrollInElement, property));
 					}else{
 						props[property] = propValueToCssFormat(property, deltaValue(trans, scrollInElement, property));
@@ -289,7 +301,7 @@
 			}else{
 				frameTransition.exit.forEach(function (trans) {
 					for(var property in trans){
-						if (property == 'scale' || property == 'translate3d' || property == 'rotate'){
+						if (property == 'scale' || property == 'translate3d' || property == 'rotate' || property == 'rotate3d'){
 							props['transform'] += propValueToCssFormat(property, deltaValue(trans, (scrollInElement - (frames[currentFrame].duration / 2))*2, property));
 						}else{
 							props[property] = propValueToCssFormat(property, deltaValue(trans, (scrollInElement - (frames[currentFrame].duration / 2))*2, property));
@@ -308,7 +320,7 @@
 
 		  var frameProgress = delta/frameDuration; // decimal percent
 
-		  if(property == 'translate3d'){
+		  if(property == 'translate3d' || property == 'rotate3d'){
 		  		var trans = {};
 		  		for(axis in value.from){
 		  			trans[axis] = +linearEase(delta, value.from[axis], (value.to[axis]-value.from[axis]), frameDuration).toFixed(4);
