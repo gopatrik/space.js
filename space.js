@@ -75,7 +75,6 @@
 	var Space = function () {
 		var $window = $(window);
 		var windowHeight = $window.height();
-		var dimensions = {height: $window.height(), width:$window.width()};
 		var scrollControl = ScrollController();
 		var frames;
 		var currentFrame = 0;
