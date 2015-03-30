@@ -50,6 +50,17 @@ Specify specifik entry and exit transitions. (Also overrides the default transit
 <div class="space-frame" data-enter="slideInBottom" data-exit="slideOutDown fadeOut">
 ```
 
+```javascript
+script(src="space.js")
+
+script.
+	var a = {
+		rotate720: {
+			'rotate':{from:0, to:720}
+		}
+	};
+	Space.addTransitions(a);
+```
 
 ### Supported transitions
 - scaleIn

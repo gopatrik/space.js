@@ -28,20 +28,27 @@ body
 	+frame
 		section.center
 			img.inline(src="img/spacejs.png", width="300px" alt="")
-		p.center.nm A JavaScript library for anything but normal scrolling.
-		+demoLinks
+		p.center.nm A HTML-driven JavaScript-library for narrative parallax.
+		p.center.small.underline: a(href="demo1.html") Check out the demos
+		nav.codrops-demos.center
+			a.modal(href="demo1.html")
+				b Demo 1 –  
+				| The Gallery
+			a.modal(href="demo2.html")
+				b Demo 2: 
+				| Out of Space
 		//- p.center
 		//- 	a(href="/") Documentation
 		//- 	|  | 
 		//- 	a(href="https://github.com/gopatrik/space.js") GitHub Repository
 		//- p.center.small.mt-large Scroll for a quick demo.
 
+		p.center
+			a.modal(href="https://github.com/gopatrik/space.js") API &amp; Souce / GitHub
 
-	+frame
-		p
-			a(href="https://github.com/gopatrik/space.js") Demos on Codrops
-			|  | 
-			a(href="https://github.com/gopatrik/space.js") Read Codrops Article
+		p.center
+			| Or read 
+			a.modal(href="/articles/space.js/") the Article
 
 	script(src="space.js")
 

@@ -72,7 +72,7 @@
 	};
 
 	// animation controller
-	var Space = function () {
+	var SpaceController = function () {
 		var $window = $(window);
 		var windowHeight = $window.height();
 		var scrollControl = ScrollController();
@@ -339,9 +339,29 @@
 			return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 		};
 
+
+		// format
+		// {{key:{///transition///}}, key:{///transition///}}}
+		var addTransitions = function (customTrans) {
+			// transitions[]
+			for(var name in customTrans){
+				if(transitions[name]){
+					console.log("Transition name already exists!!!");
+					return
+				};
+
+				transitions[name] = customTrans[name];
+
+			};
+
+			// reinit with new transitons.. todo: fix so that we do not have to.
+			init();
+		}
+
 		// export immutable public properties
 		return Object.freeze({
-			init:init
+			init:init,
+			addTransitions: addTransitions
 		});
 	};
 
@@ -357,7 +377,8 @@
 
 	initFrameCSS();
 
-	Space().init();
+	Space = SpaceController()
+	Space.init();
 
 }).call(this);
 
