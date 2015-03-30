@@ -1221,3 +1221,15 @@ body.dark {
   line-height: 150px;
   text-align: center;
 }
+.portrait-frame {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  background: rgba(0,0,0,0.05);
+  background-size: cover;
+  background-position: center center;
+  border: 2px solid #fff;
+  box-shadow: 0 0 3px 1px rgba(0,0,0,0.2);
+  border-radius: 50px;
+}
