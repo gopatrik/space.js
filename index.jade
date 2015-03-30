@@ -1,10 +1,13 @@
+include ./spacemixins.jade
+
 doctype html
 html
 	head
 		meta(charset="utf-8")
 		title Space.js
-		script(src="jquery-2.0.2.min.js")
-		link(rel="stylesheet", type="text/css", href="css/main.css")
+		+head("space.js")
+		//- script(src="jquery-2.0.2.min.js")
+		//- link(rel="stylesheet", type="text/css", href="css/main.css")
 
 
 
@@ -25,12 +28,13 @@ body
 	+frame
 		section.center
 			img.inline(src="img/spacejs.png", width="300px" alt="")
-		p.center.nm A javascript library for anything but normal scrolling.
-		p.center
-			a(href="/") Documentation
-			|  | 
-			a(href="https://github.com/gopatrik/space.js") GitHub Repository
-		p.center.small.mt-large Scroll for a quick demo.
+		p.center.nm A JavaScript library for anything but normal scrolling.
+		+demoLinks
+		//- p.center
+		//- 	a(href="/") Documentation
+		//- 	|  | 
+		//- 	a(href="https://github.com/gopatrik/space.js") GitHub Repository
+		//- p.center.small.mt-large Scroll for a quick demo.
 
 
 	+frame

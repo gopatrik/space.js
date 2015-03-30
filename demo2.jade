@@ -1,0 +1,64 @@
+include ./spacemixins.jade
+doctype html
+html
+	+head("Demo 2")
+
+body.dark(style="background-image:url(spacetexture.jpg);")
+	+bg('img/spacetexture.jpg')
+
+	+nav
+
+	//- +frame('img/galaxy1.jpg')
+	+frame(data-transition="zoomOut rotate360")
+		//- .white-border
+		p.nm.right Demo 2
+		h1.large.nm Out of Space
+
+
+	+frame
+		p The preassure of world rested on my shoulders
+	+frame
+		p And the weight of the universe on my chest
+	+frame
+		p I was pushed so hard against the seat
+	+frame
+		p It quickly got harder to breathe
+	+frame
+		p Harder to think
+	+frame
+		p I remember holding my breath
+	+frame
+		p Minutes passed. It was so loud.
+	+frame
+		p Joe screamed something to me through the radio.<br>I couldn't make out the words
+	+frame('img/astronaut.jpg')(data-enter="fadeIn", data-exit="fadeOut", data-duration="1.3")
+		p.large We were leaving earth and we didn't know what for.
+	+frame('img/selfie.jpg')(data-enter="fadeIn", data-exit="fadeOut", data-duration="1.3")
+		p.large I realised I was sweating heavily.
+	+frame
+		p It was not until four days later
+	+frame
+		p On a walk
+	+frame
+		p We had drifted into a shower
+	+frame
+		p I remember the feeling of my gloves scratch<br>the ladder as I was pulled loose
+	+frame(data-enter="fadeIn", data-exit="zoomOut rotate360")
+		p I drifted out
+	+frame(data-enter="fadeIn", data-exit="zoomOut")
+		p Into nothingness
+	+frame
+		p And this is were my story ends.
+	+frame(data-enter="fadeIn" data-exit="fadeOut")
+		p.large In the dark.
+	+frame(data-enter="fadeIn", data-exit="zoomOut rotate360")
+		p In the depth.
+
+	+frame(data-enter="slideInBottom rotateInQuarter", data-exit="scaleOut fadeOut")
+		p Drifting through space.
+
+	+lastNav
+
+
+	script(src="space.js")
+

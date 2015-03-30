@@ -1,0 +1,48 @@
+mixin frame(bg)
+		.space-frame&attributes(attributes)
+			if bg
+				+bg(bg)
+			section.space-inner-frame
+				block
+
+mixin demoLinks
+	nav.codrops-demos.center
+		a(href="/")
+			b Home
+		span.mr |
+		a(href="demo1.html")
+			b Demo 1 –  
+			| The Gallery
+		a(href="demo2.html")
+			b Demo 2: 
+			| Out of Space
+		//- a(href="demo3.html") Demo 3
+
+mixin nav
+	//- codrops header
+	header.codrops-header.absolute(style="z-index:100;")
+		h1 Space.js
+
+		+demoLinks
+
+
+mixin bg(src)
+	.background(style="background-image:url(#{src});")
+
+mixin painting(src)
+	.painting(class!=attributes.class)
+		img(src=src)
+
+mixin head(title)
+	head
+		meta(charset="utf-8")
+		title= title
+		script(src="jquery-2.0.2.min.js")
+		link(rel="stylesheet", type="text/css", href="css/main.css")
+		link(rel="stylesheet", type="text/css", href="css/demo.css")
+
+mixin lastNav
+	+frame
+		section.codrops-header(style="max-width:600px;")
+			h1 Scrolling in Space
+			+demoLinks

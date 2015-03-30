@@ -1,0 +1,133 @@
+include ./spacemixins.jade
+
+doctype html
+html
+	+head("Demo 1")
+
+body
+
+	//- Mixins
+
+	+nav
+
+	+frame
+		.bg(style="background-image:url(img/splash.png); padding:150px 200px;")
+			section
+				p.nm.right(style="color:white;") Demo 1
+				h1.nm.large(style="color:white;") The Gallery
+
+	+frame(data-enter="rotateInQuarterClockwise fadeIn", data-exit="fadeOut scaleOut")
+		p Not too long ago
+
+	+frame(data-enter="slideInBottom rotateInQuarterClockwise scaleIn", data-exit="slideOutDown scaleOut rotateQuarterRight")
+		.paper.relative(style="width:300px; height:400px;")
+			.center-center
+				p.bold(style="color:rgba(0,0,0,0.5);") This canvas.
+
+	+frame(data-enter="scaleIn", data-exit="fadeOut")
+		p.large Was our
+			br
+			b Medium
+	+frame
+		p Our platform
+	+frame
+		p We hung our work in bright spaces
+	+frame
+		p For people to see our stories
+	+frame
+		p We called them 
+			span.modal galleries
+			|.
+
+	+frame
+		p There we could design 
+			span.modal a path
+			|.
+	+frame
+		p.large.bold.modal A narrative.
+
+	+frame(data-enter="slideInBottom scaleIn", data-exit="scaleOut fadeOut", data-duration="2")
+		p.nm.center Now 
+			i this 
+			| is our 
+			b gallery
+		img(src="img/browser.png", width="500px" alt="")
+
+	+frame
+		p Where we share our content 
+			b with the world.
+
+	+frame(data-enter="slideInTop scaleIn", data-exit="rotate3dOut", data-duration="2")
+		img(src="img/browser_tiled.png", width="500px" alt="")
+		p.nm.center
+			| To make space, 
+			b we tile.
+	+frame
+		p This 
+			span.modal removes 
+			| narrative.
+
+	+frame
+		p Not to mention It's been getting more and more
+
+	+frame(data-enter="rotate360 scaleIn", data-exit="rotate3dOut slideOutRight", data-duration="1.2")
+		.flat-shadow
+			p.nm.huge.bold Flat
+
+	+frame
+		p Let's try 
+			span.modal something new.
+
+	
+
+	+frame(data-enter="slideInLeft", data-exit="slideOutLeft rotate3dOut rotateQuarterRight")
+		.wall-wrap
+			.left-wall
+				+painting('img/paper.jpg')
+				br
+				+painting('img/househill.jpg')
+
+			section.center-center
+				p.large
+					| Because 
+					br
+					| Our content 
+					br
+					| deserves 
+					b Space
+			//- .right-wall
+				//- +painting('img/balloon.jpg')
+
+	+frame('img/flowers.jpg')(data-enter="fadeIn", data-exit="fadeOut")
+		p.large.bold To flourish.
+
+	+frame(data-enter="slideInBottom", data-exit="slideOutDown fadeOut", data-duration="2")
+		p.large.center To impact
+		.whole
+			.half
+				+painting('img/paper.jpg')
+
+				+painting('img/househill.jpg')
+
+			.half
+				+painting('img/umbrella.jpg')(class="nm")
+
+	+frame(data-enter="slideInRight", data-exit="rotate3dOut")
+		.whole
+			.half
+				p.right(style="padding-top:60px;") To Touch
+			.half
+				+painting('img/paper.jpg')
+		
+
+
+
+	+frame
+		p Welcome to the future.
+	+frame(data-enter="scaleIn", data-exit="scaleOut fadeOut")
+		img(src="img/spacejs.png", width="300px" alt="")
+
+	+lastNav
+
+	script(src="space.js")
+

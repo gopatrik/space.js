@@ -1,0 +1,184 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,500,700);
+
+@font-face {
+	font-weight: normal;
+	font-style: normal;
+	font-family: 'codropsicons';
+	src:url('../fonts/codropsicons/codropsicons.eot');
+	src:url('../fonts/codropsicons/codropsicons.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/codropsicons/codropsicons.woff') format('woff'),
+		url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
+		url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
+}
+
+*, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; }
+.clearfix:before, .clearfix:after {display: table;  content: ''; }
+.clearfix:after { clear: both; }
+
+body {
+	background: #fff;
+	color: #333;
+	font-weight: 500;
+	font-size: 1em;
+	font-family: 'Raleway', Arial, sans-serif;
+}
+
+a {
+	outline: none;
+	color: #aaa;
+	text-decoration: none;
+}
+
+a:hover, a:focus {
+	color: #333;
+}
+
+.hidden {
+	position: absolute;
+	overflow: hidden;
+	width: 0;
+	height: 0;
+	pointer-events: none;
+}
+
+/* Header */
+.codrops-header {
+	padding: 2em 2em 4em;
+	text-align: left;
+}
+
+.codrops-header h1 {
+	margin: 0;
+	letter-spacing: -1px;
+	font-weight: 800;
+	font-size: 3em;
+	line-height: 1;
+}
+
+.codrops-header h1 span {
+	display: block;
+	padding-top: 1em;
+	padding-left: 0;
+	color: #999;
+	font-weight: 700;
+	font-size: 0.45em;
+}
+
+/* Top Navigation Style */
+.codrops-links {
+	position: relative;
+	display: inline-block;
+	text-align: center;
+	white-space: nowrap;
+	font-size: 1.25em;
+}
+
+.codrops-links::after {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-left: -1px;
+	width: 2px;
+	height: 100%;
+	background: #ddd;
+	content: '';
+	-webkit-transform: rotate3d(0,0,1,22.5deg);
+	transform: rotate3d(0,0,1,22.5deg);
+}
+
+.codrops-icon {
+	display: inline-block;
+	margin: 0.5em;
+	padding: 0em 0;
+	width: 1.5em;
+	text-decoration: none;
+}
+
+.codrops-icon span {
+	display: none;
+}
+
+.codrops-icon:before {
+	margin: 0 5px;
+	text-transform: none;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-family: 'codropsicons';
+	line-height: 1;
+
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+.codrops-icon--drop:before {
+	content: "\e001";
+}
+
+.codrops-icon--prev:before {
+	content: "\e004";
+}
+
+/* Demo links */
+.codrops-demos {
+	margin: 1em 0 0;
+}
+
+.codrops-demos a {
+	display: inline-block;
+	margin: 0;
+	margin-right: 1em;
+}
+
+.codrops-demos a.current-demo {
+	color: #333;
+}
+
+/* Content */
+.content {
+	padding: 3em 0;
+}
+
+/* Related demos */
+.content--related {
+	text-align: center;
+	font-weight: bold;
+}
+
+.media-item {
+	display: inline-block;
+	padding: 1em;
+	vertical-align: top;
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+}
+
+.media-item__img {
+	max-width: 100%;
+	opacity: 0.3;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+
+.media-item:hover .media-item__img,
+.media-item:focus .media-item__img {
+	opacity: 1;
+}
+
+.media-item__title {
+	margin: 0;
+	padding: 0.5em;
+	font-size: 1em;
+}
+
+@media screen and (max-width: 50em) {
+	.codrops-header {
+		padding: 3em 10% 4em;
+	}
+}
+
+@media screen and (max-width: 40em) {
+	.codrops-header h1 {
+		font-size: 2.8em;
+	}
+}
