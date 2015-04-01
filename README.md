@@ -100,16 +100,25 @@ You can add your own transitions with the ```addTransitions`` method. Make sure 
 </script>
 ```
 
-### Supported transitions
+### Currently supported transitions
+Note that these might come to change during the beta-phase of the library.
+
 - scaleIn
 - fadeIn
 - scaleOut
 - fadeOut
 - rotateQuarterRight
+- rotateInQuarterClockwise
+- zoomOut
 - slideInBottom
 - slideOutDown
 - slideOutLeft
 - slideOutRight
+- slideInRight
 - slideOutUp
+- slideInTop
+- slideInLeft
 - slideBottomRight
+- rotate360
+- rotate3dOut
 
