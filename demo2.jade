@@ -2,6 +2,23 @@ include ./spacemixins.jade
 doctype html
 html
 	+head("Demo 2")
+	script.
+		function preload(arrayOfImages) {
+		    $(arrayOfImages).each(function(){
+		        $('<img/>')[0].src = this;
+		        // Alternatively you could use:
+		        // (new Image()).src = this;
+		    });
+		}
+		setTimeout(function(){
+			preload([
+				'img/spacetexture2.jpg',
+				'img/astronaut.jpg',
+				'img/selfie.jpg'
+			]);
+		}, 1000);
+
+
 
 body.dark
 	+bg('img/spacetexture2.jpg')(class="texture")

@@ -3,6 +3,32 @@ include ./spacemixins.jade
 doctype html
 html
 	+head("Demo 1")
+	script.
+		function preload(arrayOfImages) {
+		    $(arrayOfImages).each(function(){
+		        $('<img/>')[0].src = this;
+		        // Alternatively you could use:
+		        // (new Image()).src = this;
+		    });
+		}
+		setTimeout(function(){
+			preload([
+				'img/splash.png',
+				'img/browser.png',
+				'img/browser_tiled.png',
+				'img/paper.jpg',
+				'img/househill.jpg',
+				'img/balloon.jpg',
+				'img/flowers.jpg',
+				'img/paper.jpg',
+				'img/househill.jpg',
+				'img/umbrella.jpg',
+				'img/paper.jpg',
+				'img/spacejs.png'
+			]);
+		}, 1000);
+
+
 
 body
 
