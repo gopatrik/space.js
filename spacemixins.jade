@@ -27,7 +27,7 @@ mixin nav
 
 
 mixin bg(src)
-	.background(style="background-image:url(#{src});")
+	.background&attributes(attributes)(style="background-image:url(#{src});")
 
 mixin painting(src)
 	.painting(class!=attributes.class)

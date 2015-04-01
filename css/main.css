@@ -819,6 +819,10 @@ below(600px)
   background-repeat: no-repeat;
   -webkit-animation: fade-in-bg 0.7s;
 }
+.background.texture {
+  background-size: auto;
+  background-repeat: repeat;
+}
 @-webkit-keyframes fade-in-bg {
   0% {
     opacity: 0;
@@ -1142,7 +1146,8 @@ body.dark {
   background-size: cover;
   background-position: center center;
 }
-.texture .bg {
+.texture .bg,
+.texture.bg .bg {
   background-size: 100% 100%;
   background-repeat: repeat;
 }
