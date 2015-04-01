@@ -1,3 +1,51 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>Space.js</title><head><meta charset="utf-8"/><title>space.js</title><script src="jquery-2.0.2.min.js"></script><link rel="stylesheet" type="text/css" href="css/main.css"/><link rel="stylesheet" type="text/css" href="css/demo.css"/></head>
+<!DOCTYPE html><html><head><head><meta charset="utf-8"/><title>space.js</title><script src="jquery-2.0.2.min.js"></script><link rel="stylesheet" type="text/css" href="css/main.css"/><link rel="stylesheet" type="text/css" href="css/demo.css"/></head></head></html><body><section style="height:100px; bottom: 20px; left: 20px;" class="absolute narrow mt-large"><div style="text-align:right;" class="third"><div style="background-image:url(img/astro_small.jpg);" class="portrait-frame inline"></div></div><div class="two-third"><div style="font-size:8px;" class="mt">Author.</div><div style="margin-bottom:5px;" class="nm small">Patrik Goethe</div><div><a href="https://twitter.com/gopatrik" data-show-count="true" class="twitter-follow-button"></a></div><div style="font-size:8px;" class="nm">PS. Not real astronaut.</div></div></section><div class="space-frame"><section class="space-inner-frame"><section class="center"><img src="img/spacejs.png" width="170px" alt="" class="inline"></section><p class="center nm">HTML-driven narrative parallax. </p><p class="small center subtle">(No js required)</p><h3 class="center small"><a href="demo1.html">Try the demos</a></h3><div class="center"><a href="demo1.html"><img src="img/demo1thumb.jpg" width="200px" class="shadow"></a><a href="demo1.html" style="margin-left: 20px;"><img src="img/demo2thumb.jpg" width="200px" class="shadow"></a></div><p class="center small">View on <a href="https://github.com/gopatrik/space.js" class="bold">GitHub </a>or read <a href="/articles/space.js/" class="bold">the Article</a></p></section></div><div class="space-frame"><section class="space-inner-frame"><h2>Creating a frame</h2>
 
-</head></html><body><div class="space-frame"><section class="space-inner-frame"><section class="center"><img src="img/spacejs.png" width="300px" alt="" class="inline"></section><p class="center nm">A HTML-driven JavaScript-library for narrative parallax.</p><p class="center small underline"><a href="demo1.html">Check out the demos</a></p><nav class="codrops-demos center"><a href="demo1.html" class="modal"><b>Demo 1 –  </b>The Gallery</a><a href="demo2.html" class="modal"><b>Demo 2: </b>Out of Space</a></nav><p class="center"><a href="https://github.com/gopatrik/space.js" class="modal">API &amp; Souce / GitHub</a></p><p class="center">Or read <a href="/articles/space.js/" class="modal">the Article</a></p><section style="height:100px;" class="narrow mt-large"><div style="text-align:right;" class="third"><div style="background-image:url(img/astro_small.jpg);" class="portrait-frame inline"></div></div><div class="two-third"><div style="font-size:8px;" class="mt">Author.</div><div style="margin-bottom:5px;" class="nm small">Patrik Goethe</div><div><a href="https://twitter.com/gopatrik" data-show-count="true" class="twitter-follow-button"></a></div><div style="font-size:8px;" class="nm">PS. Not real astronaut.</div></div></section></section></div><script src="space.js"></script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></body>
+<pre><code>&lt;div class=&quot;space-frame&quot;&gt;[contents]&lt;/div&gt;</code></pre></section></div><div class="space-frame"><section class="space-inner-frame"><p><strong>Recommended:</strong> Use <code>inner-frame</code> inside the <code>space-frame</code>. This makes things centered both vertically and horizontally inside the frame.</p>
+
+<pre><code>&lt;div class=&quot;space-frame&quot;&gt;
+	&lt;section class=&quot;space-inner-frame&quot;&gt;
+		[contents]
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre></section></div><div class="space-frame" data-duration="2"><section class="space-inner-frame"><h2>Custom duration</h2>
+
+<p>If we want we can provide a custom duration for our frames with the data-duration attribute, which multiplies the default duration of the transition.</p>
+
+<pre><code>&lt;section class=&quot;space-frame&quot; data-duration=&quot;2&quot;&gt;...&lt;/section&gt;
+&lt;section class=&quot;space-frame&quot; data-duration=&quot;0.6&quot;&gt;...&lt;/section&gt;</code></pre></section></div><div class="space-frame" data-transition="rotate360"><section class="space-inner-frame"><h2>Custom transition</h2>
+
+<p>Space.js has a default default transition - which is to enter by fading in and exit by scaling up and fading out. <strong>We can provide a custom transition override it</strong>, (from predefined transitions).</p>
+
+<pre><code>&lt;section class=&quot;space-frame&quot; data-transition=&quot;rotate360&quot;&gt;...&lt;/section&gt;</code></pre></section></div><div class="space-frame" data-transition="fadeOut slideInLeft"><section class="space-inner-frame"><h2>Multiple values are supported!</h2>
+
+<pre><code>data-transition=&quot;fadeOut slideInLeft&quot;</code></pre></section></div><div class="space-frame" data-enter="fadeIn" data-exit="fadeOut zoomOut"><section class="space-inner-frame"><h3>Custom entry and exit</h3>
+
+<p>We can also provide specific <strong>enter</strong> and <strong>exit</strong> transitions.</p>
+
+<pre><code>&lt;section class=&quot;space-frame&quot; data-enter=&quot;fadeIn&quot; data-exit=&quot;fadeOut zoomOut&quot;&gt;...&lt;/section&gt;</code></pre></section></div><div class="space-frame" data-duration="1.3" data-enter="fadeIn" data-exit="zoomOut fadeOut"><section class="space-inner-frame"><h2>What a complete frame could look like</h2>
+
+<pre><code>&lt;div class=&quot;space-frame&quot; data-enter=&quot;fadeIn&quot; data-exit=&quot;zoomOut fadeOut&quot; data-duration=&quot;1.3&quot;&gt;
+	&lt;section class=&quot;space-inner-frame&quot;&gt;
+		&lt;div style=&quot;background-image:url(img/splash.png); padding:150px 200px;&quot; class=&quot;bg&quot;&gt;
+			&lt;section&gt;
+				&lt;p&gt;Demo 1&lt;/p&gt;
+				&lt;h1&gt;The Gallery&lt;/h1&gt;
+			&lt;/section&gt;
+		&lt;/div&gt;
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre></section></div><div class="space-frame" data-enter="scaleIn" data-exit="slideOutDown"><section class="space-inner-frame"><h2>Custom transitions</h2>
+
+<p>You can also specify your own transitions with the <code>addTransitions</code> method.</p>
+
+<pre><code>&lt;script src=&quot;space.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var transitions = {
+		rotate720: {
+			&#39;rotate&#39;: {from:0, to:720}
+		},
+		fadeOutHalf: {
+			&#39;opacity&#39;: {from:1, to:0.5}
+		}
+	};
+	Space.addTransitions(transitions);
+&lt;/script&gt;</code></pre></section></div><div class="space-frame" data-enter="fadeIn" data-exit="fadeOut" data-duration="4"><section class="space-inner-frame"><section class="center"><img src="img/spacejs.png" width="170px" alt="" class="inline"></section><p class="center nm">HTML-driven narrative parallax. </p><p class="small center subtle">(No js required)</p><h3 class="center small"><a href="demo1.html">Try the demos</a></h3><div class="center"><a href="demo1.html"><img src="img/demo1thumb.jpg" width="200px" class="shadow"></a><a href="demo1.html" style="margin-left: 20px;"><img src="img/demo2thumb.jpg" width="200px" class="shadow"></a></div><p class="center small">View on <a href="https://github.com/gopatrik/space.js" class="bold">GitHub </a>or read <a href="/articles/space.js/" class="bold">the Article</a></p><section style="height:100px; bottom: 20px; left: 20px;" class="narrow mt-large"><div style="text-align:right;" class="third"><div style="background-image:url(img/astro_small.jpg);" class="portrait-frame inline"></div></div><div class="two-third"><div style="font-size:8px;" class="mt">Author.</div><div style="margin-bottom:5px;" class="nm small">Patrik Goethe</div><div><a href="https://twitter.com/gopatrik" data-show-count="true" class="twitter-follow-button"></a></div><div style="font-size:8px;" class="nm">PS. Not real astronaut.</div></div></section></section></div><div class="space-frame"><section class="space-inner-frame"></section></div><script src="space.js"></script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></body>

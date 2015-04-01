@@ -117,7 +117,7 @@
 }
 .wireframe p {
   font-size: 16px;
-  color: subtle;
+  color: rgba(0,0,0,0.2);
 }
 .normal {
   font-weight: 300;
@@ -129,7 +129,7 @@
   margin-left: 20px;
 }
 .left-border {
-  border-left: 2px solid subtle;
+  border-left: 2px solid rgba(0,0,0,0.2);
 }
 ul.inline-list {
   padding: 0;
@@ -146,6 +146,9 @@ ul.inline-list li {
 }
 .badge .tiny {
   font-size: 11px;
+}
+.shadow {
+  box-shadow: 0 0 2px 0.1px #000;
 }
 ul {
   font-size: 22px;
@@ -231,14 +234,14 @@ section.super-narrow:after {
   text-align: right;
 }
 .subtle {
-  color: subtle;
+  color: rgba(0,0,0,0.2);
 }
 .nolink {
   text-decoration: none;
   font-family: fontSans;
 }
 .nolink.subtle {
-  color: subtle;
+  color: rgba(0,0,0,0.2);
 }
 .nolink:hover {
   color: modal;
@@ -579,7 +582,7 @@ section.unmodal h2,
 article.unmodal a,
 div.unmodal a,
 section.unmodal a {
-  color: subtle;
+  color: rgba(0,0,0,0.2);
   margin: 0;
 }
 .absolute {
@@ -596,7 +599,7 @@ section.unmodal a {
   left: 0;
 }
 .underlined {
-  border-bottom: 2px dotted subtle;
+  border-bottom: 2px dotted rgba(0,0,0,0.2);
 }
 .bg.blue {
   background-color: #74c3e2;
@@ -1232,4 +1235,11 @@ body.dark {
   border: 2px solid #fff;
   box-shadow: 0 0 3px 1px rgba(0,0,0,0.2);
   border-radius: 50px;
+}
+pre {
+  tab-size: 2;
+  padding: 20px;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,0.2);
+  background: #e6e9f0;
 }

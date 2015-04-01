@@ -3,54 +3,140 @@ include ./spacemixins.jade
 doctype html
 html
 	head
-		meta(charset="utf-8")
-		title Space.js
 		+head("space.js")
-		//- script(src="jquery-2.0.2.min.js")
-		//- link(rel="stylesheet", type="text/css", href="css/main.css")
-
-
 
 body
 
 	//- Mixins
 
-	mixin frame(bg)
-		.space-frame&attributes(attributes)
-			if bg
-				+bg(bg)
-			section.space-inner-frame
-				block
+	mixin firstFrame
+		section.center
+			img.inline(src="img/spacejs.png", width="170px" alt="")
+		p.center.nm HTML-driven narrative parallax. 
+		p.small.center.subtle (No js required)
 
-	mixin bg(src)
-		.background(style="background-image:url(#{src});")
+		//- nav.codrops-demos.center
+		//- 	a.modal(href="demo2.html")
+		//- 		b Demo –  
+		//- 		| Out of Space
+		//- 	a.modal(href="demo1.html")
+		//- 		b Demo –  
+		//- 		| The Gallery
+		h3.center.small: a(href="demo1.html") Try the demos
+		.center
+			a(href="demo1.html"): img.shadow(src="img/demo1thumb.jpg", width="200px")
+			a(href="demo1.html", style="margin-left: 20px;"): img.shadow(src="img/demo2thumb.jpg", width="200px")
+
+		p.center.small
+			| View on 
+			a.bold(href="https://github.com/gopatrik/space.js") GitHub 
+			| or read 
+			a.bold(href="/articles/space.js/") the Article
+
+	section.absolute.narrow.mt-large(style="height:100px; bottom: 20px; left: 20px;")
+		.third(style="text-align:right;")
+			.portrait-frame.inline(style="background-image:url(img/astro_small.jpg);")
+		.two-third
+			.mt(style="font-size:8px;") Author.
+			.nm.small(style="margin-bottom:5px;") Patrik Goethe
+			div: a(href="https://twitter.com/gopatrik", class="twitter-follow-button" data-show-count="true")
+			.nm(style="font-size:8px;") PS. Not real astronaut.
+	
+	+frame
+		+firstFrame
+
 
 	+frame
-		section.center
-			img.inline(src="img/spacejs.png", width="300px" alt="")
-		p.center.nm A HTML-driven JavaScript-library for narrative parallax.
-		p.center.small.underline: a(href="demo1.html") Check out the demos
-		nav.codrops-demos.center
-			a.modal(href="demo1.html")
-				b Demo 1 –  
-				| The Gallery
-			a.modal(href="demo2.html")
-				b Demo 2: 
-				| Out of Space
-		//- p.center
-		//- 	a(href="/") Documentation
-		//- 	|  | 
-		//- 	a(href="https://github.com/gopatrik/space.js") GitHub Repository
-		//- p.center.small.mt-large Scroll for a quick demo.
+		:markdown
+			## Creating a frame
 
-		p.center
-			a.modal(href="https://github.com/gopatrik/space.js") API &amp; Souce / GitHub
+				<div class="space-frame">[contents]</div>
 
-		p.center
-			| Or read 
-			a.modal(href="/articles/space.js/") the Article
 
-		section.narrow.mt-large(style="height:100px;")
+	+frame
+		:markdown
+			**Recommended:** Use ```inner-frame``` inside the ```space-frame```. This makes things centered both vertically and horizontally inside the frame.
+
+				<div class="space-frame">
+					<section class="space-inner-frame">
+						[contents]
+					</section>
+				</div>
+
+
+	+frame(data-duration="2")
+		:markdown
+			## Custom duration
+			If we want we can provide a custom duration for our frames with the data-duration attribute, which multiplies the default duration of the transition.
+
+
+				<section class="space-frame" data-duration="2">...</section>
+				<section class="space-frame" data-duration="0.6">...</section>
+
+
+	+frame(data-transition="rotate360")
+		:markdown
+			## Custom transition
+			Space.js has a default default transition - which is to enter by fading in and exit by scaling up and fading out. **We can provide a custom transition override it**, (from predefined transitions).
+
+
+				<section class="space-frame" data-transition="rotate360">...</section>
+
+
+	+frame(data-transition="fadeOut slideInLeft")
+		:markdown
+			## Multiple values are supported!
+
+				data-transition="fadeOut slideInLeft"
+
+
+	+frame(data-enter="fadeIn", data-exit="fadeOut zoomOut")
+		:markdown
+			### Custom entry and exit
+			We can also provide specific **enter** and **exit** transitions.
+
+				<section class="space-frame" data-enter="fadeIn" data-exit="fadeOut zoomOut">...</section>
+
+
+	+frame(data-duration="1.3", data-enter="fadeIn", data-exit="zoomOut fadeOut")
+		:markdown
+			## What a complete frame could look like
+
+				<div class="space-frame" data-enter="fadeIn" data-exit="zoomOut fadeOut" data-duration="1.3">
+					<section class="space-inner-frame">
+						<div style="background-image:url(img/splash.png); padding:150px 200px;" class="bg">
+							<section>
+								<p>Demo 1</p>
+								<h1>The Gallery</h1>
+							</section>
+						</div>
+					</section>
+				</div>
+
+
+	+frame(data-enter="scaleIn", data-exit="slideOutDown")
+		:markdown
+			## Custom transitions
+			You can also specify your own transitions with the ```addTransitions``` method.
+
+				<script src="space.js"></script>
+
+				<script type="text/javascript">
+					var transitions = {
+						rotate720: {
+							'rotate': {from:0, to:720}
+						},
+						fadeOutHalf: {
+							'opacity': {from:1, to:0.5}
+						}
+					};
+					Space.addTransitions(transitions);
+				</script>
+
+
+	+frame(data-enter="fadeIn", data-exit="fadeOut", data-duration="4")
+		+firstFrame
+		section.narrow.mt-large(style="height:100px; bottom: 20px; left: 20px;")
 			.third(style="text-align:right;")
 				.portrait-frame.inline(style="background-image:url(img/astro_small.jpg);")
 			.two-third
@@ -58,6 +144,9 @@ body
 				.nm.small(style="margin-bottom:5px;") Patrik Goethe
 				div: a(href="https://twitter.com/gopatrik", class="twitter-follow-button" data-show-count="true")
 				.nm(style="font-size:8px;") PS. Not real astronaut.
+
+	+frame
+
 
 	script(src="space.js")
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

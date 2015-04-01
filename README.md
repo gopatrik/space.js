@@ -79,7 +79,7 @@ If we really want to get into detail, we can provide how we wish the frame to en
 		</div>
 	</section>
 </div>
-
+```
 
 ## Custom transitions
 You can add your own transitions with the ```addTransitions`` method. Make sure it is done after the library is loaded.
