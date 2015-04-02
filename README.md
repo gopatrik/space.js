@@ -1,5 +1,5 @@
 # Space.js
-A HTML-driven JavaScript-library for narrative parallax.
+A HTML-driven JavaScript-library for narrative 3D-scrolling.
 
 **NOTE THAT SHOULD BE CONSIDERED TO BE BETA SOFTWARE**
 *Production use is not recommended at this point.*
