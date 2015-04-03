@@ -1,6 +1,8 @@
 # Space.js
 A HTML-driven JavaScript-library for narrative 3D-scrolling.
 
+See the demos [here](http://www.slashie.org/space.js/)
+
 **NOTE THAT SHOULD BE CONSIDERED TO BE BETA SOFTWARE**
 *Production use is not recommended at this point.*
 
