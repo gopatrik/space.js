@@ -290,7 +290,7 @@
 			if(scrollInElement <= (frames[currentFrame].duration / 2)){
 				frameTransition.enter.forEach(function (trans) {
 					for(var property in trans){
-						if (property == 'scale' || property == 'translate3d' || property == 'rotate'){
+						if (property == 'scale' || property == 'translate3d' || property == 'rotate' || property == 'rotate3d'){
 							props['transform'] += propValueToCssFormat(property, deltaValue(trans, scrollInElement*2, property));
 						}else{
 							props[property] = propValueToCssFormat(property, deltaValue(trans, scrollInElement*2, property));
@@ -308,7 +308,8 @@
 					};
 				});
 			}
-
+			props['-webkit-transform'] = props['transform'];
+			props['-moz-transform'] = props['transform'];
 			$(frames[currentFrame].selector).css(props);
 		};
 
