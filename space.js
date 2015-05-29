@@ -10,8 +10,8 @@
 		var method;
 		var interval;
 		var repeatIntervalId;
-		var $window = $(window);
-		var lastScrollTop = 0;
+		var browserWindow = window;
+    var lastScrollTop = 0;
 		var lastScrollTime;
 		var delayCount = 0;
 
@@ -29,13 +29,13 @@
 		};
 
 		// ----- private methods ------
-		
+
 		// Tick forwards, check for scroll stop and run *method*.
 		var update = function(){
 			if(repeatIntervalId){
 				// detect when to stop repeating
-				var tmpScrollTop = $window.scrollTop();
-				
+				var tmpScrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+
 
 				// delta stopped
 				if(tmpScrollTop == lastScrollTop){
@@ -253,12 +253,12 @@
 				case "rotate":
 					return 'rotate('+val+'deg)';
 				case "translate3d":
-					return 'translate3d(' + 
+					return 'translate3d(' +
 						(val.x ? val.x+'px' : 0)+','+
 						(val.y ? val.y+'px' : 0)+','+
 						(val.z ? val.z+'px' : 0)+')';
 				case "rotate3d":
-					return 'rotate3d(' + 
+					return 'rotate3d(' +
 						(val.x ? val.x : 0)+','+
 						(val.y ? val.y : 0)+','+
 						(val.z ? val.z : 0)+','+
