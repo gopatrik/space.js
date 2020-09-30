@@ -84,7 +84,7 @@ If we really want to get into detail, we can provide how we wish the frame to en
 ```
 
 ## Custom transitions
-You can add your own transitions with the ```addTransitions`` method. Make sure it is done after the library is loaded.
+You can add your own transitions with the  ``addTransitions`` method. Make sure it is done after the library is loaded.
 
 ```javascript
 <script src="space.js"></script>
