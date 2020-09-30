@@ -1,14 +1,14 @@
-# Space.js
+# Space.js an amazing javascript library
 A HTML-driven JavaScript-library for narrative 3D-scrolling.
 
 See the demos [here](http://www.slashie.org/space.js/)
 
-**NOTE THAT SHOULD BE CONSIDERED TO BE BETA SOFTWARE**
+**NOTE THAT SHOULD BE CONSIDERED TO BE BETA VERSION OF THE SOFTWARE**
 *Production use is not recommended at this point.*
 
 ## Usage
 
-**Import the library**
+**Importing the library**
 ```html
 <head>
 	<script type="text/javascript" src="[jquery]"></script>
@@ -40,7 +40,7 @@ I would also **strongly** recommend using an inner-frame inside the space-frame,
 </div>
 ```
 
-### Custom duration
+### Customising duration
 If we want we can provide a custom duration for our frames with the data-duration attribute, which multiplies the default duration of the transition.
 
 ```html
@@ -62,7 +62,7 @@ Multiple values are supported!
 <section class="space-frame" data-transition="rotate360 fadeOut slideInLeft">...</section>
 ```
 
-### Custom entry and exit
+### Customised entry and exit
 If we really want to get into detail, we can provide how we wish the frame to enter (first half of the frame duration) and exit (second half).
 
 ```html
