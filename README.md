@@ -20,7 +20,7 @@ See the demos [here](http://www.slashie.org/space.js/)
 </body>
 ```
 
-The library is HTML-driven, which means that you don't need to write a single line of JavaScript to use it on your site and still have a lot of flexibility!
+The library is HTML driven, which means that you don't need to write a single line of JavaScript to use it on your site and still have a lot of flexibility!
 
 The core of the library is to divide our HTML into frames, or *space-frames* as we call them her (to not conflict the common class name "frame").
 
