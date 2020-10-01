@@ -3,7 +3,7 @@ A HTML-driven JavaScript-library for narrative 3D-scrolling.
 
 See the demos [here](http://www.slashie.org/space.js/)
 
-**NOTE THAT SHOULD BE CONSIDERED TO BE BETA SOFTWARE**
+**NOTE: IT SHOULD BE CONSIDERED A BETA SOFTWARE**
 *Production use is not recommended at this point.*
 
 ## Usage
@@ -50,7 +50,7 @@ If we want we can provide a custom duration for our frames with the data-duratio
 
 
 ### Options
-Space.js has a default default transition - which is to enter by fading in and exit by scaling up and fading out. We can also provide a custom transition override to the library from predefined transitions. (We can also create our own transitions from scratch, but we'll get to that later.)
+Space.js has a default transition - which is to enter by fading in and exit by scaling up and fading out. We can also provide a custom transition override to the library from predefined transitions. (We can also create our own transitions from scratch, but we'll get to that later.)
 
 ```html
 <section class="space-frame" data-transition="rotate360">...</section>
@@ -69,7 +69,7 @@ If we really want to get into detail, we can provide how we wish the frame to en
 <section class="space-frame" data-enter="fadeIn" data-exit="fadeOut zoomOut">...</section>
 ```
 
-## What a complete frame could look like
+## What a complete frame will look like
 ```html
 <div class="space-frame" data-enter="fadeIn" data-exit="zoomOut fadeOut" data-duration="1.3">
 	<section class="space-inner-frame">
@@ -103,7 +103,7 @@ You can add your own transitions with the ```addTransitions`` method. Make sure 
 ```
 
 ### Currently supported transitions
-Note that these might come to change during the beta-phase of the library.
+Note that these might change during the beta-phase of the library.
 
 - scaleIn
 - fadeIn
