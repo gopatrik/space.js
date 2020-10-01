@@ -25,7 +25,7 @@ The library is HTML-driven, which means that you don't need to write a single li
 The core of the library is to divide our HTML into frames, or *space-frames* as we call them her (to not conflict the common class name "frame").
 
 
-### Creating a frame
+### Creating the frame
 ```html
 <div class="space-frame">[contents]</div>
 ```
