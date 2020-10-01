@@ -1,4 +1,5 @@
 # Space.js
+
 A HTML-driven JavaScript-library for narrative 3D-scrolling.
 
 See the demos [here](http://www.slashie.org/space.js/)
@@ -105,22 +106,22 @@ You can add your own transitions with the ```addTransitions`` method. Make sure 
 ### Currently supported transitions
 Note that these might come to change during the beta-phase of the library.
 
-- scaleIn
-- fadeIn
-- scaleOut
-- fadeOut
-- rotateQuarterRight
-- rotateInQuarterClockwise
-- zoomOut
-- slideInBottom
-- slideOutDown
-- slideOutLeft
-- slideOutRight
-- slideInRight
-- slideOutUp
-- slideInTop
-- slideInLeft
-- slideBottomRight
-- rotate360
-- rotate3dOut
+1. scaleIn
+2. fadeIn
+3. scaleOut
+4. fadeOut
+5. rotateQuarterRight
+6. rotateInQuarterClockwise
+7. zoomOut
+8. slideInBottom
+9. slideOutDown
+10. slideOutLeft
+11. slideOutRight
+12. slideInRight
+13. slideOutUp
+14. slideInTop
+15. slideInLeft
+16. slideBottomRight
+17. rotate360
+18. rotate3dOut
 
