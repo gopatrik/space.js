@@ -1,4 +1,4 @@
-# Space.js
+# Space.js, infinite and easy
 A HTML-driven JavaScript-library for narrative 3D-scrolling.
 
 See the demos [here](http://www.slashie.org/space.js/)
