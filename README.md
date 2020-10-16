@@ -3,7 +3,8 @@ A HTML-driven JavaScript-library for narrative 3D-scrolling.
 
 See the demos [here](http://www.slashie.org/space.js/)
 
-**NOTE THAT SHOULD BE CONSIDERED TO BE BETA SOFTWARE**
+**NOTE: THAT SHOULD BE CONSIDERED TO BE BETA SOFTWARE**
+
 *Production use is not recommended at this point.*
 
 ## Usage
@@ -20,9 +21,9 @@ See the demos [here](http://www.slashie.org/space.js/)
 </body>
 ```
 
-The library is HTML-driven, which means that you don't need to write a single line of JavaScript to use it on your site and still have a lot of flexibility!
+This library is HTML-driven, which means that you don't need to write a single line of JavaScript to use it on your site and still have a lot of flexibility!
 
-The core of the library is to divide our HTML into frames, or *space-frames* as we call them her (to not conflict the common class name "frame").
+The core of the library is to divide our HTML text into frames, or *space-frames* as we call them her (to not conflict the common class name "frame").
 
 
 ### Creating a frame
@@ -30,7 +31,7 @@ The core of the library is to divide our HTML into frames, or *space-frames* as 
 <div class="space-frame">[contents]</div>
 ```
 
-I would also **strongly** recommend using an inner-frame inside the space-frame, which provides some helpful CSS to make things centered both vertically and horizontally inside the frame.
+I would also **strongly** recommend using an inner-frame inside the space-frame, which provides some useful CSS to make things centered both vertically and horizontally inside the frame.
 
 ```html
 <div class="space-frame">
@@ -41,7 +42,7 @@ I would also **strongly** recommend using an inner-frame inside the space-frame,
 ```
 
 ### Custom duration
-If we want we can provide a custom duration for our frames with the data-duration attribute, which multiplies the default duration of the transition.
+If we want we can also provide a custom duration for our frames with the data-duration attribute, which multiplies the default duration of the transition.
 
 ```html
 <section class="space-frame" data-duration="1.4">...</section>
@@ -63,7 +64,7 @@ Multiple values are supported!
 ```
 
 ### Custom entry and exit
-If we really want to get into detail, we can provide how we wish the frame to enter (first half of the frame duration) and exit (second half).
+If we really want to get into details, we can provide how we wish the frame to enter (first half of the frame duration) and exit (second half).
 
 ```html
 <section class="space-frame" data-enter="fadeIn" data-exit="fadeOut zoomOut">...</section>
